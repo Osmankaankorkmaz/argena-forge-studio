@@ -1,0 +1,89 @@
+{
+  "name": "argena-forge-basic",
+  "displayName": "Argena Forge Basic",
+  "description": "AI-powered VS Code extension for generating, previewing, and customizing static HTML, CSS, and JavaScript websites.",
+  "version": "0.0.1",
+  "publisher": "argenatechlabs",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onView:argenaBasic.sidebar",
+    "onCommand:argenaBasic.generateFromPrompt",
+    "onCommand:argenaBasic.applyPlannedChanges",
+    "onCommand:argenaBasic.openPreview",
+    "onCommand:argenaBasic.resetState"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "argenaBasic.generateFromPrompt",
+        "title": "Argena Forge: Generate From Prompt"
+      },
+      {
+        "command": "argenaBasic.applyPlannedChanges",
+        "title": "Argena Forge: Apply Planned Changes"
+      },
+      {
+        "command": "argenaBasic.openPreview",
+        "title": "Argena Forge: Open Live Preview"
+      },
+      {
+        "command": "argenaBasic.resetState",
+        "title": "Argena Forge: Reset State"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "argenaBasic",
+          "title": "Argena",
+          "icon": "media/argena-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "argenaBasic": [
+        {
+          "type": "webview",
+          "id": "argenaBasic.sidebar",
+          "name": "Argena Forge"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Argena Forge Basic",
+      "properties": {
+        "argenaBasic.language": {
+          "type": "string",
+          "default": "tr",
+          "enum": ["tr", "en"],
+          "description": "UI language"
+        },
+        "argenaBasic.theme": {
+          "type": "string",
+          "default": "system",
+          "enum": ["system", "dark", "light"],
+          "description": "Sidebar theme mode"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "typecheck": "tsc --noEmit -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "dependencies": {
+    "@heyputer/puter.js": "^2.2.5",
+    "dotenv": "^16.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "@types/vscode": "^1.92.0",
+    "typescript": "^5.5.4"
+  }
+}
